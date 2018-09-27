@@ -1,6 +1,8 @@
 'use strict';
 
-const data = [
+const data = {
+	title: 'React',
+	blocks: [
 	{
 		title: 'Компоненты',
 		article: 'Каждый компонент являются законченной частью пользовательского интерфейса и сам управляет своим состоянием, а композиция компонентов (соединение) позволяет создавать более сложные компоненты. Таким образом, создается иерархия компонентов, причем каждый отдельно взятый компонент независим сам по себе. Такой подход позволяет строить сложные интерфейсы, где есть множество состояний, и взаимодействовать между собой.'
@@ -13,13 +15,13 @@ const data = [
 		title: 'Использование JSX',
 		article: 'JSX является языком, расширяющим синтаксис стандартного Javascript. По факту он позволяет писать HTML-код в JS-скриптах. Такой подход упрощает разработку компонентов и повышает читаемость кода.'
 	}
-];
+]};
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			opened: data[0].title
+			opened: data.blocks[0].title
 		};
 		this.onClick = this.onClick.bind(this);
 	}
@@ -34,8 +36,8 @@ class App extends React.Component {
 	render() {
 		return (
 			<main className="main">
-				<h2 className="title">React</h2>
-				{data.map((item, index) => {
+				<h2 className="title">{data.title}</h2>
+				{data.blocks.map((item, index) => {
 					return <Item title={item.title} article={item.article} isOpen={this.state.opened === item.title} key={index} onClick={this.onClick}/>
 				})}
 			</main>
